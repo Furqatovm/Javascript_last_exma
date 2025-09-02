@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand: #006BFF;
+    --color-body-color: #f4f7fd;
+    --container-1250px:1350px;
+    --font-sans: "Poppins", sans-serif;
+    --color-blacks:#000000;
+    --color-nav-child-color:#282830;
+    --color-sarlavha-color:#0F172A;
+    --color-grayy:#888888;
+    --color-orangee:#DC3545;
+  }
+
+  *,html{
+    transition: all 0.3s linear;
+  }

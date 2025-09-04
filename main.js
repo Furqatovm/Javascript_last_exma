@@ -426,3 +426,15 @@ body.addEventListener("click", (e) =>{
 function addFavourites(id){
   Gdata.forEach((value) => value.id === +id ? shop.find((el => el.id ===value.id)) ? shop :shop.push(value) : shop)
 }
+
+
+
+
+let togle =document.querySelectorAll(".togle");
+togle.forEach((value) =>{
+  value.addEventListener("click", ()=>{
+  let span =value.parentElement.nextElementSibling;
+    span.classList.toggle("hidden");
+    value.classList.toggle("rotate-180")
+  })
+})

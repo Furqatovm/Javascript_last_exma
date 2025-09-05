@@ -1,9 +1,7 @@
 
-
 setTimeout(() => {
   document.getElementById("loader").style.display = "none";
 }, 2000);
-
 let cards =document.getElementById("cards");
 let API ="https://68b6da3a73b3ec66cec2ef52.mockapi.io/Asaxiy/Products";
 let telefonlar =document.getElementById("telefonrlar");
@@ -13,9 +11,11 @@ let bestseller =document.getElementById("bestseller");
 let Std =document.getElementById("talaba");
 let kamputer =document.getElementById("kamputer");
 let ommabop =document.getElementById("ommabop");
+let savat_NUmber =document.getElementById("savatNumber");
 let Gdata = [];
-let shop = JSON.parse(localStorage.getItem("shop")) || [];
-let orders =document.getElementById("orders");
+let order = JSON.parse(localStorage.getItem("orders")) || [];
+let shop = JSON.parse(localStorage.getItem("orders")) || [];
+console.log(shop)
 
 fetch(API)
 .then((response) =>response.json())
@@ -26,6 +26,14 @@ fetch(API)
 .catch((error) =>console.log(error));
 
 function addUi(data) {
+  cards.innerHTML = "";
+  xazna.innerHTML = "";
+  telefonlar.innerHTML = "";   // qo‘shildi
+  bestseller.innerHTML = "";   // qo‘shildi
+  kamputer.innerHTML = "";     // qo‘shildi
+  ommabop.innerHTML = "";      // qo‘shildi
+  Std.innerHTML = "";   
+
     data.forEach(element => {
       if (element.type == "chegirma") {
         let div = document.createElement("div");
@@ -67,7 +75,11 @@ function addUi(data) {
           </div>
         `;
   
-        cards.append(div);
+        if(cards){
+          cards.append(div);
+          } else{
+            return;
+          }
       } else if (element.type == "telefon"){
         let div =document.createElement("div");
         div.innerHTML =`
@@ -111,14 +123,18 @@ function addUi(data) {
                 <span class="text-brand text-[18px] font-bold">${element.price.toLocaleString()}</span>
                 <button class="text-[#FE7300] text-[14px] text-left w-full p-[5px]  rounded-[4px] border border-[#FE7300] bg-transparent">${(element.price /11).toLocaleString()} x 12 мес</button>
                 <div class="flex justify-between w-full mt-[10px]">
-                    <button class="tugma w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand" id="${element.id}">Купить в один клик</button>
+                    <button class="tugma w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand cursor-pointer" id="${element.id}">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
                         <i class="fa-solid fa-cart-shopping" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
         `;
-        telefonlar.append(div)
+        if(telefonlar){
+          telefonlar.append(div);
+          } else{
+            return;
+          }
       } else if (element.type == "xazna"){
         let div =document.createElement("div");
         div.innerHTML =`
@@ -168,7 +184,11 @@ function addUi(data) {
                 </div>
         </div>
         `;
-        xazna.append(div)
+        if(xazna){
+          xazna.append(div);
+          } else{
+            return;
+          }
       } else if (element.type == "top"){
         let div =document.createElement("div");
         div.innerHTML =`
@@ -219,7 +239,11 @@ function addUi(data) {
                 </div>
         </div>
         `;
-        bestseller.append(div);
+        if(bestseller){
+          bestseller.append(div);
+          } else{
+            return;
+          }
       } else if (element.type == "student"){
         let div =document.createElement("div");
         div.innerHTML =`
@@ -270,7 +294,11 @@ function addUi(data) {
                 </div>
         </div>
         `;
-        Std.append(div)
+        if(Std){
+          Std.append(div);
+          } else{
+            return;
+          }
       }else if (element.type == "pc"){
         let div =document.createElement("div");
         div.innerHTML =`
@@ -321,7 +349,11 @@ function addUi(data) {
                 </div>
         </div>
         `;
-        kamputer.append(div)
+        if(kamputer){
+          kamputer.append(div);
+          } else{
+            return;
+          }
       }else if (element.type == "ommabop"){
         let div =document.createElement("div");
         div.innerHTML =`
@@ -372,7 +404,11 @@ function addUi(data) {
                 </div>
         </div>
         `;
-        ommabop.append(div)
+        if(ommabop){
+          ommabop.append(div);
+          } else{
+            return;
+          }
       }
     });
   }
@@ -400,9 +436,9 @@ togle.forEach((value) =>{
 
 body.addEventListener("click", (e)=>{
   if(e.target.classList.contains("tugma")){
+  e.preventDefault();
     let id =e.target.id;
-    console.log(e.target.id);
-    console.log(addSHop(id));
+     addSHop(id)
   }
 })
 
@@ -417,96 +453,83 @@ function addSHop (id){
       shop = [...shop, data];
       localStorage.setItem("shop", JSON.stringify(shop));
     }
-    return addUIshop(shop)
+    order = shop;
+    localStorage.setItem("orders", JSON.stringify(order));
+  
+    addUi(Gdata);
+    changeNumber(order);
 
-}
+};
 
 
+function showSavatNumber(arr){
+    let natija =arr.length;
+    savat_NUmber.textContent =natija;
+};
 
 
-function addUIshop(shop){
-  shop.forEach((value) =>{
-    let div =document.createElement("div");
-    div.classList.add(
-      "p-[2rem]",
-  "flex",
-  "justify-between",
-  "items-center",
-  "border-b",
-  "border-gray-400"
-    );
-
-    div.innerHTML = `
-                    <div class="max-w-[150px]">
-                        <img src="${value.img}" class="w-full" alt="">
-                    </div>
-                    <div>
-                        <h4 class="text-[18px]">${value.title}</h4>
-                        <button class="mt-[5px] py-[3px] px-[10px] rounded-[8px] bg-brand text-white">TCL</button>
-                    </div>
-                    <div class="flex gap-[2rem] items-center">
-                        <button class="w-[30px] h-[30px] rounded-full border border-brand text-center flex items-center justify-center">-</button>
-                        <div>1</div>
-                        <button class="w-[30px] h-[30px] rounded-full border border-brand text-center flex items-center jusorderstify-center">+</button>
-        
-                    </div>
-                    <div class="flex flex-col gap-[0.5rem]">
-                        <span class="text-brand font-bold">${value.price}</span>
-                        <button class="text-[#FE7300] text-[14px] text-left w-full p-[5px]  rounded-[4px] border border-[#FE7300] bg-transparent">1292992 x 12 мес</button>
-                    </div>
-                    <div class="text-gray-300">
-                        <i class="fa-regular fa-heart hover:text-red-500 cursor-pointer"></i>
-                        <i class="fa-solid fa-trash hover:text-red-500 cursor-pointer"></i>
-                    </div>
-    `;
-    orders.append(div);
-  console.log(value);
-  });
-}
+function changeNumber(arr){
+  let natija = arr.length;
+  savat_NUmber.textContent =natija;
+};
 
 
 
 
 
-// const swiper = new Swiper(".mySwiper", {
-//   slidesPerView: 6,       
-//   loop: true, 
-// autoplay: {
-//   delay: 2000,
-//   disableOnInteraction: false, 
-// },
-// pagination: {
-//   el: ".swiper-pagination",
-//   clickable: true,
-// },
-// navigation: {
-//   nextEl: ".swiper-button-next",
-//   prevEl: ".swiper-button-prev",
-// },
-// });
 
-// const swiper2 = new Swiper(".mySwiper2", {
-//   slidesPerView: 4,
-//   loop: true,
-//   autoplay: {
-//       delay: 2000, 
-//       disableOnInteraction: false, 
-//     },
-//   navigation: { 
-//       nextEl: ".swiper2-button-next", 
-//       prevEl: ".swiper2-button-prev" 
-//   },
-// });
+showSavatNumber(order);
 
-// const swiper3 = new Swiper(".mySwiper3", {
-//   slidesPerView: 5,
-//   loop: true,
-//   autoplay: {
-//       delay: 2000, 
-//       disableOnInteraction: false, 
-//     },
-//   navigation: { 
-//       nextEl: ".swiper3-button-next", 
-//       prevEl: ".swiper3-button-prev" 
-//   },
-// });
+
+const swiper = new Swiper(".mySwiper", {
+  slidesPerView: 6,       
+  loop: true, 
+autoplay: {
+  delay: 2000,
+  disableOnInteraction: false, 
+},
+pagination: {
+  el: ".swiper-pagination",
+  clickable: true,
+},
+navigation: {
+  nextEl: ".swiper-button-next",
+  prevEl: ".swiper-button-prev",
+},
+});
+
+const swiper2 = new Swiper(".mySwiper2", {
+  slidesPerView: 4,
+  loop: true,
+  autoplay: {
+      delay: 2000, 
+      disableOnInteraction: false, 
+    },
+  navigation: { 
+      nextEl: ".swiper2-button-next", 
+      prevEl: ".swiper2-button-prev" 
+  },
+});
+
+const swiper3 = new Swiper(".mySwiper3", {
+  slidesPerView: 5,
+  loop: true,
+  autoplay: {
+      delay: 2000, 
+      disableOnInteraction: false, 
+    },
+  navigation: { 
+      nextEl: ".swiper3-button-next", 
+      prevEl: ".swiper3-button-prev" 
+  },
+});
+
+
+
+
+
+
+
+
+
+

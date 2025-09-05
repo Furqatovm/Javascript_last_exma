@@ -179,7 +179,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -234,7 +234,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -289,7 +289,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -344,7 +344,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -399,7 +399,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -440,6 +440,12 @@ body.addEventListener("click", (e)=>{
     let id =e.target.id;
      addSHop(id)
   }
+  if(e.target.classList.contains("shopp")){
+    e.preventDefault();
+    let id =e.target.id;
+    addSHop(id);
+    alert("shopga qo'shildi")
+  }
 })
 
 
@@ -472,6 +478,7 @@ function changeNumber(arr){
   let natija = arr.length;
   savat_NUmber.textContent =natija;
 };
+
 
 
 

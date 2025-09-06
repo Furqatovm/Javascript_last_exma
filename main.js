@@ -439,7 +439,6 @@ body.addEventListener("click", (e)=>{
     e.preventDefault();
     let id =e.target.id;
     addSHop(id);
-    alert("shopga qo'shildi")
   }
 })
 
@@ -459,6 +458,22 @@ function addSHop (id){
   
     addUi(Gdata);
     changeNumber(order);
+    const msg = document.getElementById("message");
+
+    // Boshida display:none -> block + fade in
+    msg.classList.remove("hidden"); // display block qiladi
+    msg.classList.add("opacity-100"); // fade in
+    
+    // 2 sekund kutib keyin fade out + display:none
+    setTimeout(() => {
+        msg.classList.remove("opacity-100");
+        msg.classList.add("opacity-0");
+    
+        // 0.5 sekund fade out tugagandan keyin display:none
+        setTimeout(() => {
+            msg.classList.add("hidden");
+        }, 500); 
+    }, 2000);
 
 };
 

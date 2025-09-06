@@ -123,9 +123,9 @@ function addUi(data) {
                 <span class="text-brand text-[18px] font-bold">${element.price.toLocaleString()}</span>
                 <button class="text-[#FE7300] text-[14px] text-left w-full p-[5px]  rounded-[4px] border border-[#FE7300] bg-transparent">${(element.price /11).toLocaleString()} x 12 мес</button>
                 <div class="flex justify-between w-full mt-[10px]">
-                    <button class="tugma w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand cursor-pointer" id="${element.id}">Купить в один клик</button>
+                    <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand cursor-pointer">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping cursor-pointer shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -179,7 +179,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping cursor-pointer shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -234,7 +234,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping cursor-pointer shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -289,7 +289,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping cursor-pointer shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -344,7 +344,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping cursor-pointer shopp" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -399,7 +399,7 @@ function addUi(data) {
                 <div class="flex justify-between w-full mt-[10px]">
                     <button class="w-[80%] text-white text-[13px] font-bold py-[10px] px-[1.5rem] rounded-[10px] bg-brand">Купить в один клик</button>
                     <div class="w-[19%] p-[8px] text-white bg-[#00BFAF] flex items-center justify-center rounded-[8px]">
-                        <i class="fa-solid fa-cart-shopping shopp" id="${element.id}"></i>
+                        <i class="fa-solid fa-cart-shopping shopp cursor-pointer" id="${element.id}"></i>
                     </div>
                 </div>
         </div>
@@ -435,11 +435,6 @@ togle.forEach((value) =>{
 })
 
 body.addEventListener("click", (e)=>{
-  if(e.target.classList.contains("tugma")){
-  e.preventDefault();
-    let id =e.target.id;
-     addSHop(id)
-  }
   if(e.target.classList.contains("shopp")){
     e.preventDefault();
     let id =e.target.id;
